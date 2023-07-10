@@ -1,0 +1,17 @@
+{
+  "schema_version": "v1",
+  "name_for_human": "Gematria, 777 & Similarity",
+  "name_for_model": "gematria_777_text_similarity",
+  "description_for_human": "Calculate the gematria value,777  classify a text, and similarity search. You can input text in Heb, Grk, or Eng.",
+  "description_for_model": "Plugin for calculating the gematria value, classifying a text using Liber 777, and performing text similarity search. Text can be input in Hebrew, Greek, or English.",
+  "auth": {
+    "type": "none"
+  },
+  "api": {
+    "type": "openapi",
+    "url": "http://localhost:5003/openapi.yaml"
+  },
+  "logo_url": "http://localhost:5003/logo.png",
+  "contact_email": "legal@example.com",
+  "legal_info_url": "http://example.com/legal"
+}

@@ -1,0 +1,150 @@
+openapi: 3.0.1
+info:
+  title: Gematria, 777 lookup, and Text Similarity Plugin
+  description: A plugin that allows the user to create and manage a gematria calculator, classify text using Liber 777, and perform text similarity search using ChatGPT.
+  version: 'v1'
+servers:
+  - url: http://localhost:5003
+paths:
+  /gematria:
+    post:
+      operationId: calculateGematria
+      summary: Calculate the gematria value of a given string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/calculateGematriaRequest'
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/calculateGematriaResponse'
+  /classify:
+    post:
+      operationId: classifyText
+      summary: Classify a given text according to Liber 777 
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/classifyTextRequest'
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/classifyTextResponse'
+  /similarity:
+    post:
+      operationId: getSimilarity
+      summary: Perform a text similarity search
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/getSimilarityRequest'
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getSimilarityResponse'
+  /all:
+    post:
+      operationId: allInOne
+      summary: Perform all operations at once
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/allInOneRequest'
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/allInOneResponse'
+components:
+  schemas:
+    calculateGematriaRequest:
+      type: object
+      required:
+        - text
+      properties:
+        text:
+          type: string
+          description: The text to calculate the gematria value of.
+    calculateGematriaResponse:
+      type: object
+      properties:
+        gematria_value:
+          type: integer
+          description: The calculated gematria value.
+    classifyTextRequest:
+      type: object
+      required:
+        - text
+      properties:
+        text:
+          type: string
+          description: The text to classify.
+    classifyTextResponse:
+      type: object
+      properties:
+        classification:
+          type: string
+          description: The classification of the given text.
+    getSimilarityRequest:
+      type: object
+      required:
+        - text
+        - n_results
+      properties:
+        text:
+          type: string
+          description: The text to perform a similarity search on.
+        n_results:
+          type: integer
+          description: The number of results to return.
+    getSimilarityResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: A message indicating the completion of the similarity search.
+    allInOneRequest:
+      type: object
+      required:
+        - text
+        - n_results
+      properties:
+        text:
+          type: string
+          description: The text to perform all operations on.
+        n_results:
+          type: integer
+          description: The number of results to return for the similarity search.
+    allInOneResponse:
+      type: object
+      properties:
+        gematria:
+          type: integer
+          description: The calculated gematria value.
+        classification:
+          type: string
+          description: The classification of the given text.
+        similarity:
+          type: array
+          items:
+            type: string
+          description: The results of the similarity search.
